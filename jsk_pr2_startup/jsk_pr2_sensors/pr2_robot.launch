@@ -1,8 +1,8 @@
 <launch>
   <arg name="launch_tf_buffer" default="true" />
-  <arg name="launch_pcl_roi" default="true" />
-  <arg name="launch_image_resized" default="true" />
-  <arg name="launch_image_roi" default="true" />
+  <arg name="launch_pcl_roi" default="false" />
+  <arg name="launch_image_resized" default="false" />
+  <arg name="launch_image_roi" default="false" />
   <arg name="launch_interactive_controller" default="true" />
 
   <arg name="tf_update_rate" default="1.0" />
