@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(jsk_pepper_startup)
+project(jsk_nao_startup)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  naoqi_driver
   roseus
   rostwitter
 )
@@ -80,7 +81,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES jsk_pepper_startup
+#  LIBRARIES jsk_nao_startup
 #  CATKIN_DEPENDS nao_driver roseus rostwitter
 #  DEPENDS system_lib
 )
@@ -97,19 +98,19 @@ include_directories(
 )
 
 ## Declare a cpp library
-# add_library(jsk_pepper_startup
-#   src/${PROJECT_NAME}/jsk_pepper_startup.cpp
+# add_library(jsk_nao_startup
+#   src/${PROJECT_NAME}/jsk_nao_startup.cpp
 # )
 
 ## Declare a cpp executable
-# add_executable(jsk_pepper_startup_node src/jsk_pepper_startup_node.cpp)
+# add_executable(jsk_nao_startup_node src/jsk_nao_startup_node.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-# add_dependencies(jsk_pepper_startup_node jsk_pepper_startup_generate_messages_cpp)
+# add_dependencies(jsk_nao_startup_node jsk_nao_startup_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(jsk_pepper_startup_node
+# target_link_libraries(jsk_nao_startup_node
 #   ${catkin_LIBRARIES}
 # )
 
@@ -128,7 +129,7 @@ include_directories(
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS jsk_pepper_startup jsk_pepper_startup_node
+# install(TARGETS jsk_nao_startup jsk_nao_startup_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -153,7 +154,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_jsk_pepper_startup.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_jsk_nao_startup.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
