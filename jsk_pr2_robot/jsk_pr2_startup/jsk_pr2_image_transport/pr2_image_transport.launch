@@ -1,4 +1,5 @@
 <launch>
+  <include file="$(find pr2_machine)/sim.machine" />
   <arg name="USE_SNAPSHOT" default="true" />
   <arg name="USE_THROTTLE" default="true" />
   <arg name="USE_MJPEGSERVER" default="false" />
@@ -84,10 +85,39 @@
 
   <group if="$(arg USE_THROTTLE)" >
     <!-- resized image -->
-    <node pkg="resized_image_transport" type="image_resizer" name="head_resized"
+    <node pkg="resized_image_transport" type="image_resizer" name="head_compressed"
           machine="c2"
           output="screen" >
       <remap from="~input/image" to="/openni_c2/rgb/$(arg THROTTLE_IMAGE_TYPE)_color" />
+      <remap from="~output/image" to="~$(arg THROTTLE_IMAGE_TYPE)" />
+      <param name="resize_scale_x" value="1.0" />
+      <param name="resize_scale_y" value="1.0" />
+      <param name="use_messages" value="$(arg THROTTLE_USE_MESSAGES)" />
+      <param name="period" value="$(arg THROTTLE_PERIOD)" />
+      <param name="use_snapshot" value="false" />
+      <param name="~$(arg THROTTLE_IMAGE_TYPE)/compressed/jpeg_quality" value="0"/>
+    </node>
+
+    <node pkg="image_transport" type="republish" name="republish_head_compressed"
+	  args="compressed"
+	  machine="c2"
+	  output="screen" >
+      <remap from="in" to="/head_compressed/$(arg THROTTLE_IMAGE_TYPE)"/>
+      <remap from="out" to="~/$(arg THROTTLE_IMAGE_TYPE)"/>
+    </node>
+
+
+    <node pkg="topic_tools" type="relay" name="head_compressed_camera_info_relay"
+	  args="/openni_c2/rgb/camera_info /republish_head_compressed/camera_info"
+	  />
+
+    <node pkg="resized_image_transport" type="image_resizer" name="head_resized"
+          machine="c2"
+          output="screen" >
+      <!--
+      <remap from="~input/image" to="/openni_c2/rgb/$(arg THROTTLE_IMAGE_TYPE)_color" />
+      -->
+      <remap from="~input/image" to="/republish_head_compressed/$(arg THROTTLE_IMAGE_TYPE)" />
       <remap from="~output/image" to="~$(arg THROTTLE_IMAGE_TYPE)" />
       <param name="resize_scale_x" value="$(arg THROTTLE_RESIZE_RATE)" />
       <param name="resize_scale_y" value="$(arg THROTTLE_RESIZE_RATE)" />
