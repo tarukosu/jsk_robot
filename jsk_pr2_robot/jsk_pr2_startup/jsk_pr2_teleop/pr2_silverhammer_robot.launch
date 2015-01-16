@@ -22,6 +22,7 @@
         message: jsk_pr2_startup/OCS2FC
         receive_port: 1027
         receive_ip: "0.0.0.0"
+        topic_prefix: "/"
       </rosparam>
     </node>
 
@@ -42,6 +43,7 @@
         message: jsk_pr2_startup/OCS2FCLargeData
         receive_port: 1028
         receive_ip: "0.0.0.0"
+        topic_prefix: "/"
       </rosparam>
     </node>
 
@@ -62,6 +64,7 @@
         message: jsk_pr2_startup/OCS2FCHeartBeat
         receive_port: 1030
         receive_ip: "0.0.0.0"
+        topic_prefix: "/"
       </rosparam>
     </node>
 

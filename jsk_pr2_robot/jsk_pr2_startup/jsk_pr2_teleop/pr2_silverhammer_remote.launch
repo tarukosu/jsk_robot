@@ -1,4 +1,4 @@
-<launch>
+<launch>p
   <arg name="TO_IP" value="133.11.216.201"/>
 
   <!-- OCS to FC -->
@@ -10,6 +10,7 @@
         message: jsk_pr2_startup/FC2OCS
         receive_port: 1025
         receive_ip: "0.0.0.0"
+        topic_prefix: "/"
       </rosparam>
     </node>
 
@@ -19,7 +20,7 @@
       <rosparam subst_value="True">
         message: jsk_pr2_startup/OCS2FC
         to_port: 1027
-        receive_ip: $(arg TO_IP)
+        to_ip: $(arg TO_IP)
       </rosparam>
       <remap from="~input" to="ocs2fc_original" />
     </node>
@@ -31,6 +32,7 @@
         message: jsk_pr2_startup/FC2OCSLargeData
         receive_port: 1026
         receive_ip: "0.0.0.0"
+        topic_prefix: "/"
       </rosparam>
     </node>
 
@@ -52,13 +54,14 @@
         message: jsk_pr2_startup/FC2OCSHeartBeat
         receive_port: 1029
         receive_ip: "0.0.0.0"
+        topic_prefix: "/"
       </rosparam>
     </node>
 
     <node pkg="jsk_network_tools" type="silverhammer_highspeed_streamer.py"
           output="screen"
           name="ocs_heartbeat_streamer">
-      <rosparam subst_value="True">>
+      <rosparam subst_value="True">
         message: jsk_pr2_startup/OCS2FCHeartBeat
         to_port: 1030
         to_ip: $(arg TO_IP)
