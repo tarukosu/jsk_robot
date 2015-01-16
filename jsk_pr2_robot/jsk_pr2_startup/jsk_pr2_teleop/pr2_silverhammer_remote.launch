@@ -44,5 +44,29 @@
       <remap from="~input" to="ocs2fc_original" />
     </node>
 
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_receiver.py"
+          output="screen"
+          name="ocs_heartbeat_receiver">
+      <rosparam>
+        message: jsk_pr2_startup/FC2OCSHeartBeat
+        receive_port: 1029
+        receive_ip: "0.0.0.0"
+      </rosparam>
+    </node>
+
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_streamer.py"
+          output="screen"
+          name="ocs_heartbeat_streamer">
+      <rosparam>
+        message: jsk_pr2_startup/OCS2FCHeartBeat
+        to_port: 1030
+        to_ip: "133.11.216.148"
+      </rosparam>
+    </node>
   </group>
+
+  <node pkg="jsk_network_tools" type="heartbeat_responser.py"
+	output="screen"
+	name="heartbeat_responser"/>
+
 </launch>
