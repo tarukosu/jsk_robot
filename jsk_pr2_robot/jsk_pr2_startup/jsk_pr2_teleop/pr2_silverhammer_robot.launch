@@ -72,5 +72,7 @@
 
   <node pkg="jsk_network_tools" type="heartbeat_master.py"
 	output="screen"
-	name="heartbeat_master"/>
+	name="heartbeat_master">
+    <param name="~rate" value="100"/>
+  </node>
 </launch>
