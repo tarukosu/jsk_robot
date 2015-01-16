@@ -1,11 +1,11 @@
 <launch>
   <include file="$(find pr2_machine)/$(env ROBOT).machine" />
 
-  <arg name="USE_SNAPSHOT" default="true" />
+  <arg name="USE_SNAPSHOT" default="false" />
   <arg name="USE_THROTTLE" default="true" />
   <arg name="USE_MJPEGSERVER" default="false" />
   <arg name="USE_ROTATED" default="true" />
-  <arg name="USE_EDGE" default="true" />
+  <arg name="USE_EDGE" default="false" />
   <arg name="USE_LOGPOLAR" default="true" />
 
   <arg name="THROTTLE_RATE" default="1.4" />
@@ -141,10 +141,12 @@
     </node>
   </group>
 
+  <!-- log polar transform -->
   <group if="$(arg USE_LOGPOLAR)" >
+    <!-- openni -->
     <node pkg="resized_image_transport" type="log_polar" name="head_log_polar"
-	  alaunch-prefix="gdb -ex run --args"
-	  output="screen">
+	  machine="c2"
+	  output="screen" >
       <remap from="~input/image" to="/openni_c2/rgb/$(arg THROTTLE_IMAGE_TYPE)_color" />
       <remap from="~output/image" to="~image" />
       <param name="resize_scale_x" value="1.0" />
@@ -154,13 +156,61 @@
     </node>
 
     <node pkg="resized_image_transport" type="image_resizer" name="head_log_polar_image_resizer"
+	  machine="c2"
     	  output="screen">
       <remap from="~input/image" to="head_log_polar/image" />
       <remap from="~output/image" to="~image" />
       <param name="resize_scale_x" value="$(arg LOGPOLAR_RESIZE_RATE)" />
-      <param name="resize_scale_y" value="$(arg LOGPOLAR_RESIZE_RATE)" />x
+      <param name="resize_scale_y" value="$(arg LOGPOLAR_RESIZE_RATE)" />
       <param name="use_messages" value="false" />
     </node>
+
+    <!-- rarm -->
+    <node pkg="resized_image_transport" type="log_polar" name="rhand_log_polar"
+	  machine="c2"
+	  output="screen" >
+      <remap from="~input/image" to="/r_forearm_cam/rotated/image" />
+      <remap from="r_forearm_cam/rotated/camera_info" to="r_forearm_cam/camera_info" />
+      <remap from="~output/image" to="~image" />
+      <param name="resize_scale_x" value="1.0" />
+      <param name="resize_scale_y" value="1.0" />
+      <param name="log_polar_scale" value="100.0" />
+      <param name="period" value="1.0"/>
+    </node>
+
+    <node pkg="resized_image_transport" type="image_resizer" name="rhand_log_polar_image_resizer"
+	  machine="c2"
+    	  output="screen">
+      <remap from="~input/image" to="rhand_log_polar/image" />
+      <remap from="~output/image" to="~image" />
+      <param name="resize_scale_x" value="$(arg LOGPOLAR_RESIZE_RATE)" />
+      <param name="resize_scale_y" value="$(arg LOGPOLAR_RESIZE_RATE)" />
+      <param name="use_messages" value="false" />
+    </node>
+
+    <!-- larm -->
+    <node pkg="resized_image_transport" type="log_polar" name="lhand_log_polar"
+	  machine="c2"
+	  output="screen" >
+      <remap from="~input/image" to="/l_forearm_cam/rotated/image"/>
+      <remap from="l_forearm_cam/rotated/camera_info" to="l_forearm_cam/camera_info" />
+      <remap from="~output/image" to="~image" />
+      <param name="resize_scale_x" value="1.0" />
+      <param name="resize_scale_y" value="1.0" />
+      <param name="log_polar_scale" value="100.0" />
+      <param name="period" value="1.0"/>
+    </node>
+
+    <node pkg="resized_image_transport" type="image_resizer" name="lhand_log_polar_image_resizer"
+	  machine="c2"
+    	  output="screen">
+      <remap from="~input/image" to="lhand_log_polar/image" />
+      <remap from="~output/image" to="~image" />
+      <param name="resize_scale_x" value="$(arg LOGPOLAR_RESIZE_RATE)" />
+      <param name="resize_scale_y" value="$(arg LOGPOLAR_RESIZE_RATE)" />
+      <param name="use_messages" value="false" />
+    </node>
+
   </group>
 
 
