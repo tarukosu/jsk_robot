@@ -132,7 +132,7 @@
   </node>
 
   <include if="$(arg launch_teleoperation)"
-           file="$(find jsk_pr2_startup)/jsk_pr2_sensors/pr2_teleop_robot.launch" />
+           file="$(find jsk_pr2_startup)/jsk_pr2_teleop/pr2_teleop_robot.launch" />
   <include if="$(arg slow_camera_framerate)"
            file="$(find jsk_pr2_startup)/jsk_pr2_sensors/camera_framerate.launch" />
 
