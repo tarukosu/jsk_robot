@@ -1,0 +1,49 @@
+<launch>
+  <include file="$(find pr2_machine)/$(env ROBOT).machine" />
+
+  <!-- FC to OCS -->
+  <group ns="silverhammer">
+    <node pkg="jsk_network_tools" type="silverhammer_lowspeed_streamer.py"
+          output="screen"
+          name="fc_lowspeed_streamer">
+      <rosparam>
+        message: jsk_pr2_startup/FC2OCS
+        to_port: 1025
+        to_ip: "133.11.216.148"
+      </rosparam>
+      <remap from="~input" to="fc2ocs_original" />
+    </node>
+
+    <node pkg="jsk_network_tools" type="silverhammer_lowspeed_receiver.py"
+          output="screen"
+          name="fc_lowspeed_receiver">
+      <rosparam>
+        message: jsk_pr2_startup/OCS2FC
+        receive_port: 1027
+        to_ip: "133.11.216.148"
+      </rosparam>
+    </node>
+
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_streamer.py"
+          output="screen"
+          name="fc_highspeed_streamer">
+      <rosparam>
+        message: jsk_pr2_startup/FC2OCSLargeData
+        to_port: 1026
+        to_ip: "133.11.216.148"
+      </rosparam>
+      <remap from="~input" to="fc2ocs_original" />
+    </node>
+
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_receiver.py"
+          output="screen"
+          name="fc_highspeed_receiver">
+      <rosparam>
+        message: jsk_pr2_startup/OCS2FCLargeData
+        receive_port: 1028
+        to_ip: "133.11.216.148"
+      </rosparam>
+    </node>
+
+  </group>
+</launch>
