@@ -1,9 +1,12 @@
 <launch>
+  <include file="$(find pr2_machine)/$(env ROBOT).machine" />
+
   <arg name="USE_SNAPSHOT" default="true" />
   <arg name="USE_THROTTLE" default="true" />
   <arg name="USE_MJPEGSERVER" default="false" />
   <arg name="USE_ROTATED" default="true" />
   <arg name="USE_EDGE" default="true" />
+  <arg name="USE_LOGPOLAR" default="true" />
 
   <arg name="THROTTLE_RATE" default="1.4" />
   <arg name="THROTTLE_RESIZE_RATE" default="0.1" />
@@ -14,6 +17,7 @@
   <arg name="SNAPSHOT_IMAGE_TYPE" default="image_rect" />
   <arg name="MJPEGSERVER_PORT" default="8181"/>
   <arg name="GAZEBO_MODE" default="false" />
+  <arg name="LOGPOLAR_RESIZE_RATE" default="0.1" />
 
   <arg name="LAUNCH_MANAGER" default="true" />
   <arg name="IMAGE_NODELET_MANAGER" default="image_transport_nodelet_manager"/>
@@ -57,7 +61,7 @@
     <remap from="~output" to="$(arg IMAGE_NODELET_MANAGER)/r_forearm_cam/camera_info" />
   </node>
 
-  <!-- rotate hand image -->
+  <!-- rotate hand images -->
   <group if="$(arg USE_ROTATED)">
     <node ns="l_forearm_cam"
           pkg="nodelet" type="nodelet"
@@ -82,8 +86,9 @@
     </node>
   </group>
 
+  <!-- compress and throttle images -->
   <group if="$(arg USE_THROTTLE)" >
-    <!-- resized image -->
+    <!-- openni -->
     <node pkg="resized_image_transport" type="image_resizer" name="head_resized"
           machine="c2"
           output="screen" >
@@ -95,6 +100,7 @@
       <param name="period" value="$(arg THROTTLE_PERIOD)" />
       <param name="use_snapshot" value="false" />
     </node>
+    <!-- narrow_stereo -->
     <node pkg="resized_image_transport" type="image_resizer" name="narrow_resized"
           machine="c2"
           output="screen" >
@@ -106,6 +112,7 @@
       <param name="period" value="$(arg THROTTLE_PERIOD)" />
       <param name="use_snapshot" value="false" />
     </node>
+    <!-- l_forearm_cam -->
     <node pkg="resized_image_transport" type="image_resizer" name="lhand_resized"
           machine="c2"
           output="screen" >
@@ -118,6 +125,7 @@
       <param name="period" value="$(arg THROTTLE_PERIOD)" />
       <param name="use_snapshot" value="false" />
     </node>
+    <!-- r_forearm_cam -->
     <node pkg="resized_image_transport" type="image_resizer" name="rhand_resized"
           machine="c2"
           output="screen" >
@@ -133,8 +141,30 @@
     </node>
   </group>
 
-  <group if="$(arg USE_SNAPSHOT)" >
+  <group if="$(arg USE_LOGPOLAR)" >
+    <node pkg="resized_image_transport" type="log_polar" name="head_log_polar"
+	  alaunch-prefix="gdb -ex run --args"
+	  output="screen">
+      <remap from="~input/image" to="/openni_c2/rgb/$(arg THROTTLE_IMAGE_TYPE)_color" />
+      <remap from="~output/image" to="~image" />
+      <param name="resize_scale_x" value="1.0" />
+      <param name="resize_scale_y" value="1.0" />
+      <param name="log_polar_scale" value="100.0" />
+      <param name="period" value="1.0"/>
+    </node>
 
+    <node pkg="resized_image_transport" type="image_resizer" name="head_log_polar_image_resizer"
+    	  output="screen">
+      <remap from="~input/image" to="head_log_polar/image" />
+      <remap from="~output/image" to="~image" />
+      <param name="resize_scale_x" value="$(arg LOGPOLAR_RESIZE_RATE)" />
+      <param name="resize_scale_y" value="$(arg LOGPOLAR_RESIZE_RATE)" />x
+      <param name="use_messages" value="false" />
+    </node>
+  </group>
+
+
+  <group if="$(arg USE_SNAPSHOT)" >
     <node pkg="resized_image_transport" type="image_resizer" name="head_snap"
           machine="c2"
           output="screen" >
