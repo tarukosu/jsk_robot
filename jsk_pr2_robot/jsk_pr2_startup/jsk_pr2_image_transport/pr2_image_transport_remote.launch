@@ -1,0 +1,91 @@
+<launch>
+  <arg name="USE_EDGE" default="false" />
+  <arg name="USE_LOGPOLAR" default="true" />
+
+  <group if="$(arg USE_LOGPOLAR)">
+    <!-- openni -->
+    <node pkg="image_transport" type="republish" name="republish_head_log_polar_image_resizer"
+	  args="compressed" output="screen">
+      <remap from="in" to="/head_log_polar_image_resizer/image" />
+      <remap from="out" to="~image" />
+    </node>
+
+    <node pkg="resized_image_transport" type="image_resizer" name="head_log_polar_image_enlarger"
+    	  output="screen">
+      <remap from="~input/image" to="republish_head_log_polar_image_resizer/image" />
+      <remap from="~output/image" to="~image" />
+      <param name="width" value="640" />
+      <param name="height" value="480" />
+      <param name="use_camera_info" value="false"/>
+      <param name="use_messages" value="false" />
+    </node>
+
+    <node pkg="resized_image_transport" type="log_polar" name="head_inverse_log_polar"
+          output="screen">
+      <param name="inverse_log_polar" value="true"/>
+      <remap from="~input/image" to="/head_log_polar_image_enlarger/image" />
+      <remap from="~output/image" to="~image" />
+      <param name="width" value="640" />
+      <param name="height" value="480" />
+      <param name="use_camera_info" value="false"/>
+      <param name="use_messages" value="false" />
+    </node>
+
+    <!-- rhand -->
+    <node pkg="image_transport" type="republish" name="republish_rhand_log_polar_image_resizer"
+	  args="compressed" output="screen">
+      <remap from="in" to="/rhand_log_polar_image_resizer/image" />
+      <remap from="out" to="~image" />
+    </node>
+
+    <node pkg="resized_image_transport" type="image_resizer" name="rhand_log_polar_image_enlarger"
+    	  output="screen">
+      <remap from="~input/image" to="republish_rhand_log_polar_image_resizer/image" />
+      <remap from="~output/image" to="~image" />
+      <param name="width" value="640" />
+      <param name="height" value="480" />
+      <param name="use_camera_info" value="false"/>
+      <param name="use_messages" value="false" />
+    </node>
+
+    <node pkg="resized_image_transport" type="log_polar" name="rhand_inverse_log_polar"
+          output="screen">
+      <param name="inverse_log_polar" value="true"/>
+      <remap from="~input/image" to="/rhand_log_polar_image_enlarger/image" />
+      <remap from="~output/image" to="~image" />
+      <param name="width" value="640" />
+      <param name="height" value="480" />
+      <param name="use_camera_info" value="false"/>
+      <param name="use_messages" value="false" />
+    </node>
+
+    <!-- lhand -->
+    <node pkg="image_transport" type="republish" name="republish_lhand_log_polar_image_resizer"
+	  args="compressed" output="screen">
+      <remap from="in" to="/lhand_log_polar_image_resizer/image" />
+      <remap from="out" to="~image" />
+    </node>
+
+    <node pkg="resized_image_transport" type="image_resizer" name="lhand_log_polar_image_enlarger"
+    	  output="screen">
+      <remap from="~input/image" to="republish_lhand_log_polar_image_resizer/image" />
+      <remap from="~output/image" to="~image" />
+      <param name="width" value="640" />
+      <param name="height" value="480" />
+      <param name="use_camera_info" value="false"/>
+      <param name="use_messages" value="false" />
+    </node>
+
+    <node pkg="resized_image_transport" type="log_polar" name="lhand_inverse_log_polar"
+          output="screen">
+      <param name="inverse_log_polar" value="true"/>
+      <remap from="~input/image" to="/lhand_log_polar_image_enlarger/image" />
+      <remap from="~output/image" to="~image" />
+      <param name="width" value="640" />
+      <param name="height" value="480" />
+      <param name="use_camera_info" value="false"/>
+      <param name="use_messages" value="false" />
+    </node>
+
+  </group>
+</launch>
