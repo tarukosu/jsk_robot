@@ -1,4 +1,6 @@
 <launch>
+  <arg name="TO_IP" value="133.11.216.201"/>
+
   <!-- OCS to FC -->
   <group ns="silverhammer">
     <node pkg="jsk_network_tools" type="silverhammer_lowspeed_receiver.py"
@@ -11,14 +13,13 @@
       </rosparam>
     </node>
 
-
     <node pkg="jsk_network_tools" type="silverhammer_lowspeed_streamer.py"
           output="screen"
           name="ocs_lowspeed_streamer">
-      <rosparam>
+      <rosparam subst_value="True">
         message: jsk_pr2_startup/OCS2FC
         to_port: 1027
-        receive_ip: "0.0.0.0"
+        receive_ip: $(arg TO_IP)
       </rosparam>
       <remap from="~input" to="ocs2fc_original" />
     </node>
@@ -36,10 +37,10 @@
     <node pkg="jsk_network_tools" type="silverhammer_highspeed_streamer.py"
           output="screen"
           name="ocs_highspeed_streamer">
-      <rosparam>
+      <rosparam subst_value="True">
         message: jsk_pr2_startup/OCS2FCLargeData
         to_port: 1028
-        receive_ip: "0.0.0.0"
+        to_ip: $(arg TO_IP)
       </rosparam>
       <remap from="~input" to="ocs2fc_original" />
     </node>
@@ -57,10 +58,10 @@
     <node pkg="jsk_network_tools" type="silverhammer_highspeed_streamer.py"
           output="screen"
           name="ocs_heartbeat_streamer">
-      <rosparam>
+      <rosparam subst_value="True">>
         message: jsk_pr2_startup/OCS2FCHeartBeat
         to_port: 1030
-        to_ip: "133.11.216.148"
+        to_ip: $(arg TO_IP)
       </rosparam>
     </node>
   </group>

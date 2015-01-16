@@ -1,4 +1,5 @@
 <launch>
+  <arg name="TO_IP" value="133.11.216.201"/>
   <include file="$(find pr2_machine)/$(env ROBOT).machine" />
 
   <!-- FC to OCS -->
@@ -20,7 +21,7 @@
       <rosparam>
         message: jsk_pr2_startup/OCS2FC
         receive_port: 1027
-        to_ip: "133.11.216.148"
+        receive_ip: "0.0.0.0"
       </rosparam>
     </node>
 
@@ -40,7 +41,7 @@
       <rosparam>
         message: jsk_pr2_startup/OCS2FCLargeData
         receive_port: 1028
-        to_ip: "133.11.216.148"
+        receive_ip: "0.0.0.0"
       </rosparam>
     </node>
 
