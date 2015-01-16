@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(jsk_pr2_startup)
-find_package(catkin REQUIRED COMPONENTS message_generation sensor_msgs)
+find_package(catkin REQUIRED COMPONENTS message_generation sensor_msgs jsk_network_tools)
 
-add_message_files(FILES FC2OCS.msg FC2OCSLargeData.msg OCS2FC.msg OCS2FCLargeData.msg)
-generate_messages(DEPENDENCIES sensor_msgs)
+add_message_files(FILES FC2OCS.msg FC2OCSHeartBeat.msg FC2OCSLargeData.msg OCS2FC.msg OCS2FCHeartBeat.msg OCS2FCLargeData.msg)
+generate_messages(DEPENDENCIES sensor_msgs jsk_network_tools)
 
 catkin_package(
   CATKIN_DEPENDS message_runtime
