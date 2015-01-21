@@ -1,0 +1,1 @@
+sensor_msgs/CompressedImage rhand_resized__image__compressed

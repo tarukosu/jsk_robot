@@ -1,0 +1,84 @@
+<launch>
+  <arg name="TO_IP" value="133.11.216.151"/>
+  <include file="$(find pr2_machine)/$(env ROBOT).machine" />
+
+  <group ns="images_silverhammer">
+    <!-- resized images -->
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_streamer.py"
+          output="screen"
+          name="fc_highspeed_streamer_head_resized">
+      <rosparam subst_value="True">
+        message: jsk_pr2_startup/FC2OCSHeadResizedImage
+        to_port: 1100
+        to_ip: $(arg TO_IP)
+        throttle: False
+      </rosparam>
+    </node>
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_streamer.py"
+          output="screen"
+          name="fc_highspeed_streamer_larm_resized">
+      <rosparam subst_value="True">
+        message: jsk_pr2_startup/FC2OCSLarmResizedImage
+        to_port: 1101
+        to_ip: $(arg TO_IP)
+        throttle: False
+      </rosparam>
+    </node>
+
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_streamer.py"
+          output="screen"
+          name="fc_highspeed_streamer_rarm_resized">
+      <rosparam subst_value="True">
+        message: jsk_pr2_startup/FC2OCSRarmResizedImage
+        to_port: 1102
+        to_ip: $(arg TO_IP)
+        throttle: False
+      </rosparam>
+    </node>
+
+    <!-- Log-Polar images -->
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_streamer.py"
+          output="screen"
+          name="fc_highspeed_streamer_log_polar_head_resized">
+      <rosparam subst_value="True">
+        message: jsk_pr2_startup/FC2OCSHeadLogPolarResizedImage
+        to_port: 1103
+        to_ip: $(arg TO_IP)
+        throttle: False
+      </rosparam>
+    </node>
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_streamer.py"
+          output="screen"
+          name="fc_highspeed_streamer_log_polar_larm_resized">
+      <rosparam subst_value="True">
+        message: jsk_pr2_startup/FC2OCSLarmLogPolarResizedImage
+        to_port: 1104
+        to_ip: $(arg TO_IP)
+        throttle: False
+      </rosparam>
+    </node>
+
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_streamer.py"
+          output="screen"
+          name="fc_highspeed_streamer_log_polar_rarm_resized">
+      <rosparam subst_value="True">
+        message: jsk_pr2_startup/FC2OCSRarmLogPolarResizedImage
+        to_port: 1105
+        to_ip: $(arg TO_IP)
+        throttle: False
+      </rosparam>
+    </node>
+
+    <!-- depth image -->
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_streamer.py"
+          output="screen"
+          name="fc_highspeed_streamer_depth_registered_resized">
+      <rosparam subst_value="True">
+        message: jsk_pr2_startup/FC2OCSDepthRegisteredResized
+        to_port: 1106
+        to_ip: $(arg TO_IP)
+        throttle: False
+      </rosparam>
+    </node>
+  </group>
+</launch>

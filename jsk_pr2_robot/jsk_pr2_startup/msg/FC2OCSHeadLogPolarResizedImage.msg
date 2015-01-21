@@ -1,0 +1,1 @@
+sensor_msgs/CompressedImage head_log_polar_image_resizer__image__compressed

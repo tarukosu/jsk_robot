@@ -1,0 +1,1 @@
+sensor_msgs/CompressedImage lhand_resized__image__compressed

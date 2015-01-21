@@ -1,0 +1,1 @@
+sensor_msgs/CompressedImage openni_c2__depth_registered__resized_image__compressed

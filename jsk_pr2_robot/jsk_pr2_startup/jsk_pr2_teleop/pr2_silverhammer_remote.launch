@@ -19,7 +19,7 @@
           name="ocs_lowspeed_streamer">
       <rosparam subst_value="True">
         message: jsk_pr2_startup/OCS2FC
-        to_port: 1027
+        to_port: 1026
         to_ip: $(arg TO_IP)
       </rosparam>
       <remap from="~input" to="ocs2fc_original" />
@@ -30,7 +30,7 @@
           name="ocs_highspeed_receiver">
       <rosparam>
         message: jsk_pr2_startup/FC2OCSLargeData
-        receive_port: 1026
+        receive_port: 1027
         receive_ip: "0.0.0.0"
         topic_prefix: "/"
       </rosparam>
@@ -65,8 +65,10 @@
         message: jsk_pr2_startup/OCS2FCHeartBeat
         to_port: 1030
         to_ip: $(arg TO_IP)
+        throttle: False
       </rosparam>
     </node>
+
   </group>
 
   <node pkg="jsk_network_tools" type="heartbeat_responser.py"

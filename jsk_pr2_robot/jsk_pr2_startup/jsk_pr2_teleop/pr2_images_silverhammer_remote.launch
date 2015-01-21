@@ -1,0 +1,84 @@
+<launch>
+  <arg name="TO_IP" value="133.11.216.201"/>
+
+  <group ns="images_silverhammer">
+    <!-- resized images -->
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_receiver.py"
+          output="screen"
+          name="ocs_highspeed_receiver_head_resized">
+      <rosparam>
+        message: jsk_pr2_startup/FC2OCSHeadResizedImage
+        receive_port: 1100
+        receive_ip: "0.0.0.0"
+        topic_prefix: "/"
+      </rosparam>
+    </node>
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_receiver.py"
+          output="screen"
+          name="ocs_highspeed_receiver_larm_resized">
+      <rosparam>
+        message: jsk_pr2_startup/FC2OCSLarmResizedImage
+        receive_port: 1101
+        receive_ip: "0.0.0.0"
+        topic_prefix: "/"
+      </rosparam>
+    </node>
+
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_receiver.py"
+          output="screen"
+          name="ocs_highspeed_receiver_rarm_resized">
+      <rosparam>
+        message: jsk_pr2_startup/FC2OCSRarmResizedImage
+        receive_port: 1102
+        receive_ip: "0.0.0.0"
+        topic_prefix: "/"
+      </rosparam>
+    </node>
+
+    <!-- Log-Polar images -->
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_receiver.py"
+          output="screen"
+          name="ocs_highspeed_receiver_log_polar_head_resized">
+      <rosparam>
+        message: jsk_pr2_startup/FC2OCSHeadLogPolarResizedImage
+        receive_port: 1103
+        receive_ip: "0.0.0.0"
+        topic_prefix: "/"
+      </rosparam>
+    </node>
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_receiver.py"
+          output="screen"
+          name="ocs_highspeed_receiver_log_polar_larm_resized">
+      <rosparam>
+        message: jsk_pr2_startup/FC2OCSLarmLogPolarResizedImage
+        receive_port: 1104
+        receive_ip: "0.0.0.0"
+        topic_prefix: "/"
+      </rosparam>
+    </node>
+
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_receiver.py"
+          output="screen"
+          name="ocs_highspeed_receiver_log_polar_rarm_resized">
+      <rosparam>
+        message: jsk_pr2_startup/FC2OCSRarmLogPolarResizedImage
+        receive_port: 1105
+        receive_ip: "0.0.0.0"
+        topic_prefix: "/"
+      </rosparam>
+    </node>
+
+    <!-- depth image -->
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_receiver.py"
+          output="screen"
+          name="ocs_highspeed_receiver_depth_registered_resized">
+      <rosparam>
+        message: jsk_pr2_startup/FC2OCSDepthRegisteredResized
+        receive_port: 1106
+        receive_ip: "0.0.0.0"
+        topic_prefix: "/"
+      </rosparam>
+    </node>
+
+  </group>
+</launch>
