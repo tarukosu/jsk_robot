@@ -1,0 +1,42 @@
+<launch>
+  <arg name="launch_joint_state" default="true" />
+  <arg name="launch_pcl_roi" default="false" />
+  <arg name="launch_image_resized" default="true" />
+  <arg name="launch_image_roi" default="false" />
+  <arg name="launch_interactive_controller" default="false" />
+  <arg name="launch_silverhammer" default="true" />
+
+  <include if="$(arg launch_joint_state)"
+	   file="$(find jsk_pr2_startup)/jsk_pr2_teleop/pr2-state-ocs.launch" />
+
+  <!-- for pcl roi -->
+  <include if="$(arg launch_pcl_roi)"
+      file="$(find jsk_pcl_ros)/launch/pcl_roi_remote.launch">
+    <arg name="REMOTE_TF" value="$(arg REMOTE_TF)"/>
+    <arg name="USE_LHAND_POINTCLOUD" value="false"/>
+    <arg name="USE_RHAND_POINTCLOUD" value="false"/>
+    <arg name="ROI_MARKER_BASEFRAME" value="/base_link"/>
+  </include>
+
+  <!-- for image resized -->
+  <group if="$(arg launch_image_resized)">
+    <include  file="$(find jsk_pr2_startup)/jsk_pr2_image_transport/pr2_image_transport_remote.launch"/>
+    <include  file="$(find jsk_pr2_startup)/jsk_pr2_image_transport/pr2_depth_image_transport_remote.launch"/>
+  </group>
+
+  <!-- for image roi -->
+  <include if="$(arg launch_image_roi)"
+	   file="$(find jsk_pr2_startup)/jsk_pr2_image_transport/pr2_roi_viewer.launch"/>
+
+  <!-- for interactive controller -->
+  <include if="$(arg launch_interactive_controller)"
+	   file="$(find jsk_interactive_marker)/launch/interactive_marker_controller_remote.launch">
+    <arg name="REMOTE_TF" value="$(arg REMOTE_TF)"/>
+  </include>
+
+  <!-- for silverhammer -->
+  <group if="$(arg launch_silverhammer)">
+    <include file="$(find jsk_pr2_startup)/jsk_pr2_teleop/pr2_silverhammer_remote.launch"/>
+    <include file="$(find jsk_pr2_startup)/jsk_pr2_teleop/pr2_images_silverhammer_remote.launch"/>
+  </group>
+</launch>

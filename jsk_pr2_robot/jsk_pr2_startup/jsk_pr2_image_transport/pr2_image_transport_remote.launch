@@ -2,6 +2,25 @@
   <arg name="USE_EDGE" default="false" />
   <arg name="USE_LOGPOLAR" default="true" />
 
+  <node pkg="image_transport" type="republish" name="republish_head_resized"
+	args="compressed" output="screen">
+    <remap from="in" to="/head_resized/image_rect" />
+    <remap from="out" to="~image" />
+  </node>
+
+  <node pkg="image_transport" type="republish" name="republish_rhand_resized"
+	args="compressed" output="screen">
+    <remap from="in" to="/rhand_resized/image" />
+    <remap from="out" to="~image" />
+  </node>
+
+  <node pkg="image_transport" type="republish" name="republish_lhand_resized"
+	args="compressed" output="screen">
+    <remap from="in" to="/lhand_resized/image" />
+    <remap from="out" to="~image" />
+  </node>
+
+
   <group if="$(arg USE_LOGPOLAR)">
     <!-- openni -->
     <node pkg="image_transport" type="republish" name="republish_head_log_polar_image_resizer"

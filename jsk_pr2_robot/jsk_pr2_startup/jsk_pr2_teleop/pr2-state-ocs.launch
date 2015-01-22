@@ -1,0 +1,9 @@
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find pr2_description)/robots/pr2.urdf.xacro'" />
+
+  <node pkg="roseus" name="pr2_state_ocs" type="roseus"
+	args="$(find jsk_pr2_startup)/jsk_pr2_teleop/pr2-state-ocs.l"
+	output="screen"/>
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="ocs_robot_state_publisher" output="screen"/>
+
+</launch>

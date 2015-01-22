@@ -12,6 +12,7 @@
         receive_ip: "0.0.0.0"
         topic_prefix: "/"
       </rosparam>
+      <remap from="~output" to="fc2ocs_lowspeed" />
     </node>
 
     <node pkg="jsk_network_tools" type="silverhammer_lowspeed_streamer.py"
