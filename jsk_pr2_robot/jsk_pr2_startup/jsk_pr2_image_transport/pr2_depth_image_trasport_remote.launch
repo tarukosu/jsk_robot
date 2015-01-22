@@ -1,0 +1,70 @@
+<launch>
+  <arg name="camera_remote" default="openni_remote"/>
+  <arg name="camera" default="openni"/>
+
+  <include file="$(find openni_launch)/launch/openni.launch">
+    <arg name="publish_tf" value="false" />
+    <arg name="camera" value="$(arg camera_remote)" />
+    <arg name="depth_registration" value="true" />
+    <arg name="load_driver" value="false" />
+  </include>
+
+  <!-- openni depth_registered image -->
+  <node pkg="image_transport" type="republish" name="republish_openni_depth_resized_image"
+	args="compressedDepth" output="screen">
+    <remap from="in" to="/openni_c2/depth_registered/resized_image" />
+    <remap from="out" to="/$(arg camera_remote)/depth_registered/resized_image" />
+  </node>
+
+  <node pkg="resized_image_transport" type="image_resizer" name="openni_depth_resized_enlarger"
+	output="screen">
+    <remap from="~input/image" to="/$(arg camera_remote)/depth_registered/resized_image" />
+    <remap from="~output/image" to="/$(arg camera_remote)/depth_registered/enlarged_image_update" />
+    <param name="width" value="640" />
+    <param name="height" value="480" />
+    <param name="use_camera_info" value="false"/>
+    <param name="use_messages" value="false" />
+    <param name="interpolation" value="NEAREST"/>
+  </node>
+
+  <node pkg="jsk_pr2_startup" type="publish_camera_info.py" name="publish_depth_registered_camera_info">
+    <remap from="/output" to="/$(arg camera_remote)/depth_registered/camera_info_update"/>
+  </node>
+
+  <node pkg="jsk_pr2_startup" type="publish_camera_info.py" name="publish_rgb_camera_info">
+    <remap from="/output" to="/$(arg camera_remote)/rgb/camera_info_update"/>
+  </node>
+
+  <node pkg="jsk_topic_tools" type="topic_buffer_client" name="depth_image_topic_buffer_client" output="screen" alaunch-prefix="xterm -e gdb --args">
+    <remap from="/list" to="list"/>
+    <remap from="/update" to="update"/>
+    <remap from="/$(arg camera_remote)/depth_registered/enlarged_image_buffered" to="/$(arg camera_remote)/depth_registered/image_raw"/>
+    <remap from="/$(arg camera_remote)/depth_registered/camera_info_buffered" to="/$(arg camera_remote)/depth_registered/camera_info"/>
+    <remap from="/$(arg camera_remote)/rgb/enlarged_image_buffered" to="/$(arg camera_remote)/rgb/image_raw"/>
+    <remap from="/$(arg camera_remote)/rgb/camera_info_buffered" to="/$(arg camera_remote)/rgb/camera_info"/>
+
+    <rosparam>
+      debug: false
+      use_service: false
+      topics: ["/openni_remote/depth_registered/enlarged_image", "/openni_remote/depth_registered/camera_info", "/openni_remote/rgb/enlarged_image", "/openni_remote/rgb/camera_info"]
+      fixed_rate: 0.1
+    </rosparam>
+  </node>
+
+  <!-- openni rgb image -->
+  <node pkg="image_transport" type="republish" name="republish_head_image_resizer"
+	args="compressed" output="screen">
+    <remap from="in" to="/head_resized/image_rect" />
+    <remap from="out" to="/$(arg camera_remote)/rgb/resized_image" />
+  </node>
+
+  <node pkg="resized_image_transport" type="image_resizer" name="openni_rgb_resized_enlarger"
+	output="screen">
+    <remap from="~input/image" to="/$(arg camera_remote)/rgb/resized_image" />
+    <remap from="~output/image" to="/$(arg camera_remote)/rgb/enlarged_image_update" />
+    <param name="width" value="640" />
+    <param name="height" value="480" />
+    <param name="use_camera_info" value="false"/>
+    <param name="use_messages" value="false" />
+  </node>
+</launch>
