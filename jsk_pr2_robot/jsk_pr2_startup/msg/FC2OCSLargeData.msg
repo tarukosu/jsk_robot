@@ -3,6 +3,8 @@
 # field names.
 # the rule is super simple, just replace '__' with '/'
 jsk_pr2_startup/AngleVectorCompressed angle_vector_compressed
+std_msgs/UInt8 r_gripper_angle_vector_compressed
+std_msgs/UInt8 l_gripper_angle_vector_compressed
 # sensor_msgs/CompressedImage head_resized__image_rect__compressed
 # sensor_msgs/CompressedImage lhand_resized__image__compressed
 # sensor_msgs/CompressedImage rhand_resized__image__compressed
