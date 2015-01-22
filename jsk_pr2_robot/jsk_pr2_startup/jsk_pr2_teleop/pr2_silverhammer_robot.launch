@@ -12,7 +12,7 @@
         to_port: 1025
         to_ip: $(arg TO_IP)
       </rosparam>
-      <remap from="~input" to="fc2ocs_original" />
+      <remap from="~input" to="fc2ocs_lowspeed" />
     </node>
 
     <node pkg="jsk_network_tools" type="silverhammer_lowspeed_receiver.py"

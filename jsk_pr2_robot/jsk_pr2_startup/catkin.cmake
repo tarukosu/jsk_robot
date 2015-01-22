@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(jsk_pr2_startup)
-<<<<<<< HEAD
 find_package(catkin REQUIRED COMPONENTS message_generation std_msgs sensor_msgs jsk_network_tools)
 
 add_message_files(FILES AngleVectorCompressed.msg FC2OCS.msg FC2OCSHeartBeat.msg FC2OCSLargeData.msg OCS2FC.msg OCS2FCHeartBeat.msg OCS2FCLargeData.msg
