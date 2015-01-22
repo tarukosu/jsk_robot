@@ -1,5 +1,5 @@
 <launch>
-  <arg name="TO_IP" value="133.11.216.151"/>
+  <arg name="TO_IP" default="133.11.216.151"/>
   <include file="$(find pr2_machine)/$(env ROBOT).machine" />
 
   <group ns="images_silverhammer">

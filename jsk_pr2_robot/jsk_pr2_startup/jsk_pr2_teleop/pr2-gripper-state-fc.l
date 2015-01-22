@@ -7,20 +7,6 @@
 
 (ros::roseus-add-msgs "sensor_msgs")
 
-
-;; (defun compress-gripper-feedback
-;;   (msg)
-;;   (setq pos (send msg :feedback :position))
-;;   (setq pos (round (* 1000 pos)))
-;;   (cond
-;;    ((< pos 0)
-;;     (setq pos 0))
-;;    ((> pos 127)
-;;     (setq pos 127))
-;;    )
-;;   (instance std_msgs::Int8 :init :data pos)
-;;   )
-
 (defun compress-gripper-angle
   (pos)
   (setq pos (round (* 467 pos)))
@@ -63,13 +49,6 @@
 
 (ros::subscribe "/joint_states"
 		sensor_msgs::JointState #'js-callback)
-
-;; (ros::subscribe "/l_gripper_controller/gripper_action/feedback" 
-;; 		pr2_controllers_msgs::Pr2GripperCommandActionFeedback #'l-gripper-callback)
-;; (ros::subscribe "/r_gripper_controller/gripper_action/feedback" 
-;; 		pr2_controllers_msgs::Pr2GripperCommandActionFeedback #'r-gripper-callback)
-
-
 
 (ros::advertise "r_gripper_angle_vector_compressed" std_msgs::UInt8 1)
 (ros::advertise "l_gripper_angle_vector_compressed" std_msgs::UInt8 1)

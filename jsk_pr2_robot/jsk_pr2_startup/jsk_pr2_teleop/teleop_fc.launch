@@ -1,0 +1,49 @@
+<launch>
+  <include file="$(find pr2_machine)/$(env ROBOT).machine" />
+
+  <arg name="launch_joint_state" default="true" />
+  <arg name="launch_image_resized" default="true" />
+  <arg name="launch_image_roi" default="false" />
+  <arg name="launch_interactive_controller" default="true" />
+  <arg name="launch_silverhammer" default="true" />
+
+  <arg name="TO_IP" default="10.68.0.136"/>
+  <arg name="tf_update_rate" default="1.0" />
+
+  <group if="$(arg launch_joint_state)">
+    <node machine="c2" pkg="roseus" type="roseus" name="pr2_state"
+	  args="$(find jsk_pr2_startup)/jsk_pr2_teleop/pr2-state-fc.l"
+	  output="screen"/>
+    <node machine="c2" pkg="roseus" type="roseus" name="pr2_gripper_state"
+	  args="$(find jsk_pr2_startup)/jsk_pr2_teleop/pr2-gripper-state-fc.l"
+	  output="screen"/>
+  </group>
+  
+  <!-- for image resized -->
+  <group if="$(arg launch_image_resized)">
+    <include file="$(find jsk_pr2_startup)/jsk_pr2_image_transport/pr2_image_transport.launch"/>
+    <include file="$(find jsk_pr2_startup)/jsk_pr2_image_transport/pr2_depth_image_transport_robot.launch"/>
+  </group>
+
+  <!-- for image roi -->
+  <include if="$(arg launch_image_roi)"
+	   file="$(find jsk_pr2_startup)/jsk_pr2_image_transport/pr2_roi_transport.launch"/>
+
+  <!-- for interactive controller -->
+  <node if="$(arg launch_interactive_controller)"
+        machine="c2" pkg="roseus" type="roseus" name="robot_actions"
+	args="$(find jsk_interactive_marker)/euslisp/robot-actions.l"
+	output="screen">
+    <param name="robot" value="PR2"/>
+  </node>
+
+  <!-- for silverhammer -->
+  <group if="$(arg launch_silverhammer)">
+    <include file="$(find jsk_pr2_startup)/jsk_pr2_teleop/pr2_silverhammer_robot.launch">
+      <arg name="TO_IP" value="$(arg TO_IP)"/>
+    </include>
+    <include file="$(find jsk_pr2_startup)/jsk_pr2_teleop/pr2_images_silverhammer_robot.launch">
+      <arg name="TO_IP" value="$(arg TO_IP)"/>
+    </include>
+  </group>
+</launch>

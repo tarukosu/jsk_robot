@@ -1,5 +1,5 @@
 <launch>
-  <arg name="TO_IP" value="133.11.216.201"/>
+  <arg name="TO_IP" default="133.11.216.201"/>
 
   <group ns="images_silverhammer">
     <!-- resized images -->

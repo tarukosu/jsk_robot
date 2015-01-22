@@ -1,5 +1,5 @@
-<launch>p
-  <arg name="TO_IP" value="133.11.216.201"/>
+<launch>
+  <arg name="TO_IP" default="133.11.216.201"/>
 
   <!-- OCS to FC -->
   <group ns="silverhammer">
