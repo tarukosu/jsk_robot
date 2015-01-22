@@ -1,0 +1,20 @@
+<launch>
+  <include file="$(find pr2_machine)/$(env ROBOT).machine" />
+  <arg name="THROTTLE_RESIZE_RATE" default="0.1" />
+  <arg name="THROTTLE_IMAGE_TYPE" default="image_rect" />
+  <arg name="THROTTLE_USE_MESSAGES" default="true" />
+  <arg name="THROTTLE_PERIOD" default="3" />
+
+  <node pkg="resized_image_transport" type="image_resizer" name="depth_registered_resized"
+        machine="c2"
+        output="screen" >
+    <remap from="~input/image" to="/openni_c2/depth_registered/image_raw" />
+    <remap from="~output/image" to="/openni_c2/depth_registered/resized_image" />
+    <param name="resize_scale_x" value="$(arg THROTTLE_RESIZE_RATE)" />
+    <param name="resize_scale_y" value="$(arg THROTTLE_RESIZE_RATE)" />
+    <param name="use_messages" value="$(arg THROTTLE_USE_MESSAGES)" />
+    <param name="period" value="$(arg THROTTLE_PERIOD)" />
+    <param name="use_snapshot" value="false" />
+    <param name="interpolation" value="NEAREST"/>
+  </node>
+</launch>

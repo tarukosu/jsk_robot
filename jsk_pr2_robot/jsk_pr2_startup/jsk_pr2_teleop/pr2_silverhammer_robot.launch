@@ -1,9 +1,10 @@
 <launch>
-  <arg name="TO_IP" value="133.11.216.151"/>
+  <arg name="TO_IP" default="10.68.0.136"/>
   <include file="$(find pr2_machine)/$(env ROBOT).machine" />
 
   <!-- FC to OCS -->
   <group ns="silverhammer">
+    <!--
     <node pkg="jsk_network_tools" type="silverhammer_lowspeed_streamer.py"
           output="screen"
           name="fc_lowspeed_streamer">
@@ -25,6 +26,7 @@
         topic_prefix: "/"
       </rosparam>
     </node>
+    -->
 
     <node pkg="jsk_network_tools" type="silverhammer_highspeed_streamer.py"
           output="screen"
@@ -75,4 +77,5 @@
 	name="heartbeat_master">
     <param name="~rate" value="100"/>
   </node>
+
 </launch>
