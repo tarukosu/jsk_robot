@@ -70,6 +70,17 @@
       </rosparam>
     </node>
 
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_streamer.py"
+          output="screen"
+          name="ocs_joint_state_streamer">
+      <rosparam subst_value="True">
+        message: jsk_pr2_startup/OCS2FCJointStateRiMove
+        to_port: 1031
+        to_ip: $(arg TO_IP)
+        throttle: False
+      </rosparam>
+    </node>
+
   </group>
 
   <node pkg="jsk_network_tools" type="heartbeat_responser.py"

@@ -1,0 +1,1 @@
+jsk_interactive_marker/JointTrajectoryWithType jsk_model_marker_interface__robot__joint_trajectory_with_type_ri_move

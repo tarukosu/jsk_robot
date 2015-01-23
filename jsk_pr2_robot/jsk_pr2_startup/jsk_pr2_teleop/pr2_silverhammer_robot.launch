@@ -70,6 +70,18 @@
       </rosparam>
     </node>
 
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_receiver.py"
+          output="screen"
+          name="fc_joint_state_receiver">
+      <rosparam>
+        message: jsk_pr2_startup/OCS2FCJointStateRiMove
+        receive_port: 1031
+        receive_ip: "0.0.0.0"
+        topic_prefix: "/"
+      </rosparam>
+    </node>
+
+
   </group>
 
   <node pkg="jsk_network_tools" type="heartbeat_master.py"
