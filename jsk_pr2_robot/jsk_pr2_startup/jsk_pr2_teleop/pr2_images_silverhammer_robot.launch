@@ -93,5 +93,17 @@
       </rosparam>
     </node>
 
+    <!-- select log polar -->
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_receiver.py"
+          output="screen"
+          name="fc_silverhammer_select_log_polar">
+      <rosparam>
+        message: jsk_pr2_startup/OCS2FCSelectLogPolar
+        receive_port: 1108
+        receive_ip: "0.0.0.0"
+        topic_prefix: "/"
+      </rosparam>
+   </node>
+
   </group>
 </launch>

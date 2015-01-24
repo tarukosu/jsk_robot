@@ -1,4 +1,6 @@
 <launch>
+  <arg name="TO_IP" default="133.11.216.211"/>
+
   <arg name="launch_joint_state" default="true" />
   <arg name="launch_pcl_roi" default="true" />
   <arg name="launch_image_resized" default="true" />
@@ -35,10 +37,17 @@
     <!-- <arg name="REMOTE_TF" value="$(arg REMOTE_TF)"/> -->
     <arg name="REMOTE_TF" value="/tf"/>
   </include>
+  <node pkg="tf" name="map_to_base_footprint_tf"
+	type="static_transform_publisher"
+	args="0 0 0 0 0 0 /map /base_footprint 1000"/>
 
   <!-- for silverhammer -->
   <group if="$(arg launch_silverhammer)">
-    <include file="$(find jsk_pr2_startup)/jsk_pr2_teleop/pr2_silverhammer_remote.launch"/>
-    <include file="$(find jsk_pr2_startup)/jsk_pr2_teleop/pr2_images_silverhammer_remote.launch"/>
+    <include file="$(find jsk_pr2_startup)/jsk_pr2_teleop/pr2_silverhammer_remote.launch">
+      <arg name="TO_IP" value="$(arg TO_IP)"/>
+    </include>
+    <include file="$(find jsk_pr2_startup)/jsk_pr2_teleop/pr2_images_silverhammer_remote.launch">
+      <arg name="TO_IP" value="$(arg TO_IP)"/>
+    </include>
   </group>
 </launch>
