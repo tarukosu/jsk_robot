@@ -8,6 +8,7 @@ FC2OCSHeadLogPolarResizedImage.msg FC2OCSLarmLogPolarResizedImage.msg FC2OCSRarm
 FC2OCSDepthRegisteredResized.msg
 FC2OCSCroppedPoints.msg
 OCS2FCJointStateRiMove.msg
+OCS2FCSelectLogPolar.msg
 )
 generate_messages(DEPENDENCIES std_msgs sensor_msgs jsk_network_tools jsk_interactive_marker)
 
