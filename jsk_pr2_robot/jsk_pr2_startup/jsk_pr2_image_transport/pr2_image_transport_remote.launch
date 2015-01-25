@@ -2,6 +2,18 @@
   <arg name="USE_EDGE" default="false" />
   <arg name="USE_LOGPOLAR" default="true" />
 
+  <!-- select log polar or normal image -->
+  <node pkg="jsk_teleop_joy" type="nanopad2_joy.py" name="nanopad2_joy"
+	args="3"/>
+
+  <!-- relay to same topic -->
+  <node pkg="topic_tools" type="relay" name="head_relay"
+	args="/republish_head_resized/image head_image"/>
+
+  <node pkg="topic_tools" type="relay" name="log_polar_head_relay"
+	args="/head_inverse_log_polar/image head_image"/>
+
+
   <node pkg="image_transport" type="republish" name="republish_head_resized"
 	args="compressed" output="screen">
     <remap from="in" to="/head_resized/image_rect" />
