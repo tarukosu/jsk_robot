@@ -1,0 +1,1 @@
+std_msgs/Empty rough_point_cloud

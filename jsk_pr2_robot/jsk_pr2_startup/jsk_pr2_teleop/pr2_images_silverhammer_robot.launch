@@ -81,6 +81,19 @@
       </rosparam>
     </node>
 
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_receiver.py"
+          output="screen"
+          name="fc_silverhammer_get_depth_registered">
+      <rosparam>
+        message: jsk_pr2_startup/OCS2FCGetDepthRegisteredResized
+        receive_port: 1110
+        receive_ip: "0.0.0.0"
+        topic_prefix: "/"
+      </rosparam>
+   </node>
+
+
+
     <!-- ROI points -->
     <node pkg="jsk_network_tools" type="silverhammer_highspeed_receiver.py"
           output="screen"

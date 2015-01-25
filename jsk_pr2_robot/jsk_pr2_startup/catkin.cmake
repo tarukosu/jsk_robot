@@ -10,6 +10,7 @@ FC2OCSCroppedPoints.msg
 OCS2FCRequestPose.msg
 OCS2FCJointStateRiMove.msg
 OCS2FCSelectLogPolar.msg
+OCS2FCGetDepthRegisteredResized.msg
 )
 generate_messages(DEPENDENCIES std_msgs sensor_msgs jsk_network_tools jsk_interactive_marker)
 
