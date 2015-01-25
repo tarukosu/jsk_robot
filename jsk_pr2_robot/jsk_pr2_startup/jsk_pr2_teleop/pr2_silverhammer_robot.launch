@@ -56,6 +56,7 @@
         message: jsk_pr2_startup/FC2OCSHeartBeat
         to_port: 1029
         to_ip: $(arg TO_IP)
+        throttle: False
       </rosparam>
     </node>
 

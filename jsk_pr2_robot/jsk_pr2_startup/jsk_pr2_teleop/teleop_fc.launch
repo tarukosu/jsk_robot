@@ -7,16 +7,16 @@
   <arg name="launch_interactive_controller" default="true" />
   <arg name="launch_silverhammer" default="true" />
 
-  <arg name="TO_IP" default="10.68.0.136"/>
+  <arg name="TO_IP" default="133.11.216.190"/>
   <arg name="tf_update_rate" default="1.0" />
 
   <group if="$(arg launch_joint_state)">
     <node machine="c2" pkg="roseus" type="roseus" name="pr2_state"
 	  args="$(find jsk_pr2_startup)/jsk_pr2_teleop/pr2-state-fc.l"
-	  output="screen"/>
+	  aoutput="screen"/>
     <node machine="c2" pkg="roseus" type="roseus" name="pr2_gripper_state"
 	  args="$(find jsk_pr2_startup)/jsk_pr2_teleop/pr2-gripper-state-fc.l"
-	  output="screen"/>
+	  aoutput="screen"/>
   </group>
   
   <!-- for image resized -->
