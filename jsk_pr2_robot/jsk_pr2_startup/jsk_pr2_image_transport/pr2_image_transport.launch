@@ -162,7 +162,7 @@
       <remap from="~output/image" to="~image" />
       <param name="resize_scale_x" value="$(arg LOGPOLAR_RESIZE_RATE)" />
       <param name="resize_scale_y" value="$(arg LOGPOLAR_RESIZE_RATE)" />
-      <param name="use_messages" value="false" />
+      <param name="use_messages" value="true" />
     </node>
 
     <!-- rarm -->
@@ -185,7 +185,7 @@
       <remap from="~output/image" to="~image" />
       <param name="resize_scale_x" value="$(arg LOGPOLAR_RESIZE_RATE)" />
       <param name="resize_scale_y" value="$(arg LOGPOLAR_RESIZE_RATE)" />
-      <param name="use_messages" value="false" />
+      <param name="use_messages" value="true" />
     </node>
 
     <!-- larm -->
@@ -208,7 +208,7 @@
       <remap from="~output/image" to="~image" />
       <param name="resize_scale_x" value="$(arg LOGPOLAR_RESIZE_RATE)" />
       <param name="resize_scale_y" value="$(arg LOGPOLAR_RESIZE_RATE)" />
-      <param name="use_messages" value="false" />
+      <param name="use_messages" value="true" />
     </node>
 
   </group>
