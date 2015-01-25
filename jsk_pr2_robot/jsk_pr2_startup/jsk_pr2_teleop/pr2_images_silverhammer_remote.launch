@@ -108,7 +108,7 @@
           output="screen"
           name="silverhammer_select_log_polar">
       <rosparam subst_value="True">
-        message: jsk_pr2_startup/FC2OCSCroppedPoints
+        message: jsk_pr2_startup/OCS2FCSelectLogPolar
         to_port: 1108
         to_ip: $(arg TO_IP)
         throttle: False

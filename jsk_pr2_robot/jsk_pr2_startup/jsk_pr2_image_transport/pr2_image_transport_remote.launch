@@ -4,7 +4,9 @@
 
   <!-- select log polar or normal image -->
   <node pkg="jsk_teleop_joy" type="nanopad2_joy.py" name="nanopad2_joy"
-	args="3"/>
+	args="5"/>
+  <node pkg="jsk_pr2_startup" type="select_image.py" name="select_image"/>
+
 
   <!-- relay to same topic -->
   <node pkg="topic_tools" type="relay" name="head_relay"
