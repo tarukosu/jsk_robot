@@ -14,7 +14,8 @@
     <param name="resize_scale_y" value="$(arg THROTTLE_RESIZE_RATE)" />
     <param name="use_messages" value="$(arg THROTTLE_USE_MESSAGES)" />
     <param name="period" value="$(arg THROTTLE_PERIOD)" />
-    <param name="use_snapshot" value="false" />
+    <param name="use_snapshot" value="true" />
     <param name="interpolation" value="NEAREST"/>
+    <remap from="~/snapshot" to="/rough_point_cloud"/>
   </node>
 </launch>
