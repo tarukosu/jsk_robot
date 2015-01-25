@@ -81,6 +81,20 @@
       </rosparam>
     </node>
 
+    
+    <!-- object relation -->
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_streamer.py"
+          output="screen"
+          name="ocs_make_model_streamer">
+      <rosparam subst_value="True">
+        message: jsk_pr2_startup/OCS2FCMakeModel
+        to_port: 1032
+        to_ip: $(arg TO_IP)
+        throttle: False
+      </rosparam>
+    </node>
+
+
   </group>
 
   <node pkg="jsk_network_tools" type="heartbeat_responser.py"
