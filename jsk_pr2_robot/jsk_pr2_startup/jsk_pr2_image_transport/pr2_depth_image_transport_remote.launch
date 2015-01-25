@@ -9,6 +9,9 @@
     <arg name="load_driver" value="false" />
   </include>
 
+  <node pkg="tf" type="static_transform_publisher" name="tf_for_openni"
+	args="0 0 0 0 0 0 /head_mount_kinect_rgb_optical_frame /openni_rgb_optical_frame 1000"/>
+
   <!-- openni depth_registered image -->
   <node pkg="image_transport" type="republish" name="republish_openni_depth_resized_image"
 	args="compressedDepth" output="screen">

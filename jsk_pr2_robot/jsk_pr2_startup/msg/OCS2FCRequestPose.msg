@@ -1,0 +1,1 @@
+geometry_msgs/PoseStamped bounding_box_cropper_pose
