@@ -7,6 +7,7 @@ FC2OCSHeadResizedImage.msg FC2OCSLarmResizedImage.msg FC2OCSRarmResizedImage.msg
 FC2OCSHeadLogPolarResizedImage.msg FC2OCSLarmLogPolarResizedImage.msg FC2OCSRarmLogPolarResizedImage.msg
 FC2OCSDepthRegisteredResized.msg
 FC2OCSCroppedPoints.msg
+OCS2FCRequestPose.msg
 OCS2FCJointStateRiMove.msg
 OCS2FCSelectLogPolar.msg
 )

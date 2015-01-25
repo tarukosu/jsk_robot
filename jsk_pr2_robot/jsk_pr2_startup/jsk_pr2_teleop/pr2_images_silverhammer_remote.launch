@@ -81,6 +81,17 @@
     </node>
 
     <!-- ROI points -->
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_streamer.py"
+          output="screen"
+          name="ocs_highspeed_streamer_request_cropped_pose">
+      <rosparam subst_value="True">
+        message: jsk_pr2_startup/OCS2FCRequestPose
+        to_port: 1109
+        to_ip: $(arg TO_IP)
+        throttle: False
+      </rosparam>
+    </node>
+
     <node pkg="jsk_network_tools" type="silverhammer_highspeed_receiver.py"
           output="screen"
           name="ocs_highspeed_receiver_cropped_points">
