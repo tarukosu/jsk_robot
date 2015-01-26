@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(jsk_pr2_startup)
-find_package(catkin REQUIRED COMPONENTS message_generation std_msgs sensor_msgs jsk_network_tools jsk_interactive_marker)
+find_package(catkin REQUIRED COMPONENTS message_generation std_msgs sensor_msgs jsk_network_tools jsk_interactive_marker jsk_rviz_plugins)
 
 add_message_files(FILES AngleVectorCompressed.msg FC2OCS.msg FC2OCSHeartBeat.msg FC2OCSLargeData.msg OCS2FC.msg OCS2FCHeartBeat.msg OCS2FCLargeData.msg
 FC2OCSHeadResizedImage.msg FC2OCSLarmResizedImage.msg FC2OCSRarmResizedImage.msg
@@ -12,11 +12,12 @@ OCS2FCJointStateRiMove.msg
 OCS2FCSelectLogPolar.msg
 OCS2FCGetDepthRegisteredResized.msg
 OCS2FCMakeModel.msg
+OCS2FCRecordCommand.msg
 )
-generate_messages(DEPENDENCIES std_msgs sensor_msgs jsk_network_tools jsk_interactive_marker)
+generate_messages(DEPENDENCIES std_msgs sensor_msgs jsk_network_tools jsk_interactive_marker jsk_rviz_plugins)
 
 catkin_package(
-  CATKIN_DEPENDS std_msgs jsk_interactive_marker message_runtime
+  CATKIN_DEPENDS std_msgs jsk_interactive_marker message_runtime jsk_rviz_plugins
   )
 
 

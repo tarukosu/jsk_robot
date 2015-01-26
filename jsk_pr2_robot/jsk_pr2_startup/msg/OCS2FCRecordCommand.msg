@@ -1,0 +1,1 @@
+jsk_rviz_plugins/RecordCommand record_command

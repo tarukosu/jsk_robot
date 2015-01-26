@@ -1,14 +1,14 @@
 Panels:
   - Class: rviz/Displays
-    Help Height: 78
+    Help Height: 0
     Name: Displays
     Property Tree Widget:
       Expanded:
-        - /PointCloud21
-        - /LogPolarImages1
-        - /OverlayImage1
-      Splitter Ratio: 0.672956
-    Tree Height: 335
+        - /Global Options1
+        - /InteractiveMarkers1/Status1
+        - /InteractiveMarkers10/Status1
+      Splitter Ratio: 0.461672
+    Tree Height: 404
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -33,18 +33,27 @@ Panels:
     Topic: /test
   - Class: jsk_rviz_plugin/PublishTopic
     Name: PublishTopic
-    Topic: ""
+    Topic: rough_point_cloud
   - Class: jsk_rviz_plugin/CancelAction
     Name: CancelAction
     Topic: ""
     topics: ~
   - Class: jsk_rviz_plugin/PublishTopic
     Name: PublishTopic
-    Topic: a
+    Topic: rough_point_cloud
   - Class: jsk_rviz_plugin/ObjectFitOperatorAction
     Name: ObjectFitOperatorAction
   - Class: jsk_rviz_plugin/RecordAction
     Name: RecordAction
+  - Class: jsk_rviz_plugin/PublishTopic
+    Name: PublishTopic
+    Topic: selected_point_cloud
+  - Class: jsk_rviz_plugin/SelectPointCloudPublishAction
+    Name: SelectPointCloudPublishAction
+  - Class: rviz/Help
+    Name: Help
+  - Class: jsk_rviz_plugin/ObjectFitOperatorAction
+    Name: ObjectFitOperatorAction
 Visualization Manager:
   Class: ""
   Displays:
@@ -547,83 +556,6 @@ Visualization Manager:
       Show Axes: false
       Show Descriptions: true
       Show Visual Aids: false
-      Update Topic: /jsk_interactive_marker_manipulation/update
-      Value: true
-    - Class: rviz/Marker
-      Enabled: true
-      Marker Topic: /jsk_interactive_marker_manipulation/marker
-      Name: Marker
-      Namespaces:
-        {}
-      Queue Size: 100
-      Value: true
-    - Class: rviz/Marker
-      Enabled: true
-      Marker Topic: /jsk_interactive_marker_manipulation/origin_marker
-      Name: Marker
-      Namespaces:
-        {}
-      Queue Size: 100
-      Value: true
-    - Alpha: 1
-      Autocompute Intensity Bounds: true
-      Autocompute Value Bounds:
-        Max Value: 10
-        Min Value: -10
-        Value: true
-      Axis: Z
-      Channel Name: intensity
-      Class: rviz/LaserScan
-      Color: 255; 255; 0
-      Color Transformer: FlatColor
-      Decay Time: 0
-      Enabled: false
-      Invert Rainbow: false
-      Max Color: 255; 255; 0
-      Max Intensity: 4096
-      Min Color: 0; 0; 0
-      Min Intensity: 0
-      Name: LaserScan
-      Position Transformer: XYZ
-      Queue Size: 10
-      Selectable: true
-      Size (Pixels): 3
-      Size (m): 0.05
-      Style: Flat Squares
-      Topic: /base_scan_throttled
-      Use Fixed Frame: true
-      Use rainbow: false
-      Value: false
-    - Alpha: 1
-      Buffer Length: 1
-      Class: rviz/Path
-      Color: 25; 255; 0
-      Enabled: true
-      Name: Path
-      Topic: /move_base_node/NavfnROS/plan
-      Value: true
-    - Alpha: 1
-      Buffer Length: 1
-      Class: rviz/Path
-      Color: 25; 255; 0
-      Enabled: true
-      Name: Path
-      Topic: /move_base_node/DWAPlannerROS/local_plan
-      Value: true
-    - Alpha: 1
-      Class: rviz/GridCells
-      Color: 25; 255; 0
-      Enabled: false
-      Name: GridCells
-      Topic: /move_base_node/local_costmap/inflated_obstacles
-      Value: false
-    - Class: rviz/InteractiveMarkers
-      Enable Transparency: true
-      Enabled: true
-      Name: InteractiveMarkers
-      Show Axes: false
-      Show Descriptions: true
-      Show Visual Aids: false
       Update Topic: /jsk_ik_visualization/update
       Value: true
     - Class: rviz/InteractiveMarkers
@@ -642,24 +574,6 @@ Visualization Manager:
       Namespaces:
         {}
       Queue Size: 100
-      Value: true
-    - Class: rviz/InteractiveMarkers
-      Enable Transparency: true
-      Enabled: true
-      Name: InteractiveMarkers
-      Show Axes: false
-      Show Descriptions: true
-      Show Visual Aids: false
-      Update Topic: /triangle_foot_marker/update
-      Value: true
-    - Class: rviz/InteractiveMarkers
-      Enable Transparency: true
-      Enabled: true
-      Name: InteractiveMarkers
-      Show Axes: false
-      Show Descriptions: true
-      Show Visual Aids: false
-      Update Topic: /door_foot/update
       Value: true
     - Class: rviz/Marker
       Enabled: true
@@ -707,68 +621,6 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
-    - Class: rviz/Camera
-      Enabled: false
-      Image Rendering: background and overlay
-      Image Topic: /openni/rgb/image_raw
-      Name: Camera
-      Overlay Alpha: 1
-      Queue Size: 2
-      Transport Hint: raw
-      Value: false
-      Visibility:
-        BoundingBoxArray: true
-        Grid: true
-        GridCells: true
-        Image: true
-        InteractiveMarkers: true
-        LaserScan: true
-        LogPolarImages:
-          OverlayImage: true
-          Value: true
-        Map: true
-        Marker: true
-        MarkerArray: true
-        OverlayImage: true
-        OverlayMenu: true
-        OverlayText: true
-        Path: true
-        PointCloud2: true
-        PolygonArray: true
-        Pose: true
-        PoseArray: true
-        QuietInteractiveMarker: true
-        RobotModel: true
-        TF: true
-        Value: true
-      Zoom Factor: 1
-    - Class: rviz/MarkerArray
-      Enabled: false
-      Marker Topic: /spots_marker_array
-      Name: MarkerArray
-      Namespaces:
-        {}
-      Queue Size: 100
-      Value: false
-    - Alpha: 1
-      Buffer Length: 1
-      Class: rviz/Path
-      Color: 25; 255; 0
-      Enabled: true
-      Name: Path
-      Topic: /move_base_node/NavfnROS/plan
-      Value: true
-    - Class: rviz/Image
-      Enabled: false
-      Image Topic: /openni/rgb/image_rect_color
-      Max Value: 1
-      Median window: 5
-      Min Value: 0
-      Name: Image
-      Normalize Range: true
-      Queue Size: 2
-      Transport Hint: raw
-      Value: false
     - Arrow Length: 0.3
       Class: rviz/PoseArray
       Color: 255; 25; 0
@@ -806,35 +658,6 @@ Visualization Manager:
       color: 25; 255; 0
       line width: 0.005
       only edge: true
-    - Alpha: 1
-      Autocompute Intensity Bounds: true
-      Autocompute Value Bounds:
-        Max Value: 10
-        Min Value: -10
-        Value: true
-      Axis: Z
-      Channel Name: intensity
-      Class: rviz/PointCloud2
-      Color: 255; 255; 255
-      Color Transformer: RGB8
-      Decay Time: 0
-      Enabled: false
-      Invert Rainbow: false
-      Max Color: 255; 255; 255
-      Max Intensity: 4096
-      Min Color: 0; 0; 0
-      Min Intensity: 0
-      Name: PointCloud2
-      Position Transformer: XYZ
-      Queue Size: 10
-      Selectable: true
-      Size (Pixels): 3
-      Size (m): 0.001
-      Style: Spheres
-      Topic: /selected_pointcloud
-      Use Fixed Frame: true
-      Use rainbow: true
-      Value: false
     - Alpha: 1
       Axes Length: 1
       Axes Radius: 0.1
@@ -891,17 +714,6 @@ Visualization Manager:
       Show Visual Aids: false
       Update Topic: /pr2_gripper_marker/update
       Value: true
-    - Class: rviz/Image
-      Enabled: false
-      Image Topic: /rhand_resized/image
-      Max Value: 1
-      Median window: 5
-      Min Value: 0
-      Name: Image
-      Normalize Range: true
-      Queue Size: 2
-      Transport Hint: raw
-      Value: false
     - Arrow Length: 0.3
       Class: rviz/PoseArray
       Color: 255; 25; 0
@@ -978,24 +790,6 @@ Visualization Manager:
       Show Visual Aids: false
       Update Topic: /urdf_control_marker/update
       Value: true
-    - Class: rviz/InteractiveMarkers
-      Enable Transparency: true
-      Enabled: true
-      Name: InteractiveMarkers
-      Show Axes: false
-      Show Descriptions: true
-      Show Visual Aids: false
-      Update Topic: /footstep_marker/update
-      Value: true
-    - Class: rviz/InteractiveMarkers
-      Enable Transparency: true
-      Enabled: true
-      Name: InteractiveMarkers
-      Show Axes: false
-      Show Descriptions: true
-      Show Visual Aids: false
-      Update Topic: ""
-      Value: true
     - Class: rviz/Marker
       Enabled: true
       Marker Topic: /valve_model_marker
@@ -1027,15 +821,6 @@ Visualization Manager:
       Shape: Arrow
       Topic: /interactive_point_cloud/grasp_pose
       Value: true
-    - Class: rviz/InteractiveMarkers
-      Enable Transparency: true
-      Enabled: true
-      Name: InteractiveMarkers
-      Show Axes: false
-      Show Descriptions: true
-      Show Visual Aids: false
-      Update Topic: /set_urdf_marker/update
-      Value: true
     - Alpha: 1
       Axes Length: 1
       Axes Radius: 0.1
@@ -1050,15 +835,6 @@ Visualization Manager:
       Shape: Arrow
       Topic: /polaris_marker/selected_pose
       Value: false
-    - Class: rviz/InteractiveMarkers
-      Enable Transparency: true
-      Enabled: true
-      Name: InteractiveMarkers
-      Show Axes: false
-      Show Descriptions: true
-      Show Visual Aids: false
-      Update Topic: /jsk_model_marker_interface/update
-      Value: true
     - Alpha: 1
       Axes Length: 1
       Axes Radius: 0.1
@@ -1087,7 +863,7 @@ Visualization Manager:
       Marker Topic: /interactive_marker_manager/grasp_marker
       Name: Marker
       Namespaces:
-        {}
+        "": true
       Queue Size: 100
       Value: true
     - Class: rviz/Group
@@ -1095,40 +871,40 @@ Visualization Manager:
         - Class: jsk_rviz_plugin/OverlayImage
           Enabled: true
           Name: OverlayImage
-          Topic: /openni_remote/rgb/image_raw
+          Topic: /head_image
           Value: true
           alpha: 1
-          height: 240
+          height: 360
           left: 0
           top: 0
-          width: 320
+          width: 480
         - Class: jsk_rviz_plugin/OverlayImage
           Enabled: true
           Name: OverlayImage
           Topic: /republish_lhand_resized/image
           Value: true
           alpha: 1
-          height: 240
+          height: 360
           left: 0
-          top: 240
-          width: 320
+          top: 360
+          width: 480
         - Class: jsk_rviz_plugin/OverlayImage
           Enabled: true
           Name: OverlayImage
-          Topic: /lhand_inverse_log_polar/image
+          Topic: /republish_rhand_resized/image
           Value: true
           alpha: 1
-          height: 240
-          left: 329
-          top: 240
-          width: 320
+          height: 360
+          left: 0
+          top: 720
+          width: 480
       Enabled: true
       Name: LogPolarImages
     - Class: jsk_rviz_plugin/OverlayImage
-      Enabled: true
+      Enabled: false
       Name: OverlayImage
       Topic: /republish_lhand_resized/image
-      Value: true
+      Value: false
       alpha: 1
       height: 240
       left: 0
@@ -1148,7 +924,7 @@ Visualization Manager:
       Marker Topic: /rotational_model_marker
       Name: Marker
       Namespaces:
-        {}
+        "": true
       Queue Size: 100
       Value: true
     - Class: rviz/InteractiveMarkers
@@ -1174,7 +950,7 @@ Visualization Manager:
       Marker Topic: /cylinder_model_marker
       Name: Marker
       Namespaces:
-        {}
+        "": true
       Queue Size: 100
       Value: true
     - Class: rviz/InteractiveMarkers
@@ -1182,47 +958,18 @@ Visualization Manager:
       Enabled: true
       Name: InteractiveMarkers
       Show Axes: false
-      Show Descriptions: true
+      Show Descriptions: false
       Show Visual Aids: false
-      Update Topic: /jsk_model_marker_interface/adapter/update
+      Update Topic: /hose_adapter_urdf_models/update
       Value: true
     - Class: rviz/InteractiveMarkers
       Enable Transparency: true
       Enabled: true
       Name: InteractiveMarkers
       Show Axes: false
-      Show Descriptions: true
+      Show Descriptions: false
       Show Visual Aids: false
       Update Topic: /jsk_model_marker_interface/hose/update
-      Value: true
-    - Alpha: 1
-      Autocompute Intensity Bounds: true
-      Autocompute Value Bounds:
-        Max Value: 10
-        Min Value: -10
-        Value: true
-      Axis: Z
-      Channel Name: intensity
-      Class: rviz/PointCloud2
-      Color: 255; 255; 255
-      Color Transformer: RGB8
-      Decay Time: 0
-      Enabled: true
-      Invert Rainbow: false
-      Max Color: 255; 255; 255
-      Max Intensity: 4096
-      Min Color: 0; 0; 0
-      Min Intensity: 0
-      Name: PointCloud2
-      Position Transformer: XYZ
-      Queue Size: 10
-      Selectable: true
-      Size (Pixels): 3
-      Size (m): 0.004
-      Style: Boxes
-      Topic: /openni_remote/depth_registered/points
-      Use Fixed Frame: true
-      Use rainbow: true
       Value: true
     - Class: jsk_rviz_plugin/OverlayImage
       Enabled: false
@@ -1272,7 +1019,7 @@ Visualization Manager:
       Max Intensity: 4096
       Min Color: 0; 0; 0
       Min Intensity: 0
-      Name: PointCloud2
+      Name: SelectedPointCloud
       Position Transformer: XYZ
       Queue Size: 10
       Selectable: true
@@ -1283,10 +1030,113 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: RGB8
+      Decay Time: 0
+      Enabled: false
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: RoughPointCloud
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.002
+      Style: Flat Squares
+      Topic: /openni_remote/depth_registered/points
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: false
+    - Class: rviz/Group
+      Displays:
+        - Background Alpha: 0.8
+          Background Color: 0; 0; 0
+          Class: jsk_rviz_plugin/OverlayText
+          Enabled: true
+          Foreground Alpha: 0.8
+          Foreground Color: 25; 255; 240
+          Name: OverlayText
+          Overtake Color Properties: false
+          Overtake Position Properties: true
+          Topic: /ik_controller/ik_status
+          Value: true
+          font: DejaVu Sans Mono
+          height: 128
+          left: 480
+          line width: 2
+          text size: 66
+          top: 0
+          width: 600
+        - Background Alpha: 0.8
+          Background Color: 0; 0; 0
+          Class: jsk_rviz_plugin/OverlayText
+          Enabled: true
+          Foreground Alpha: 0.8
+          Foreground Color: 25; 255; 240
+          Name: OverlayText
+          Overtake Color Properties: false
+          Overtake Position Properties: true
+          Topic: /ik_controller/status
+          Value: true
+          font: DejaVu Sans Mono
+          height: 400
+          left: 480
+          line width: 2
+          text size: 30
+          top: 120
+          width: 600
+        - Class: rviz/InteractiveMarkers
+          Enable Transparency: true
+          Enabled: true
+          Name: InteractiveMarkers
+          Show Axes: false
+          Show Descriptions: true
+          Show Visual Aids: false
+          Update Topic: /jsk_interactive_marker_manipulation/update
+          Value: true
+        - Class: rviz/InteractiveMarkers
+          Enable Transparency: true
+          Enabled: true
+          Name: InteractiveMarkers
+          Show Axes: false
+          Show Descriptions: false
+          Show Visual Aids: false
+          Update Topic: /jsk_model_marker_interface/update
+          Value: true
+        - Class: rviz/Marker
+          Enabled: true
+          Marker Topic: /jsk_interactive_marker_manipulation/marker
+          Name: Marker
+          Namespaces:
+            {}
+          Queue Size: 100
+          Value: true
+        - Class: rviz/Marker
+          Enabled: true
+          Marker Topic: /jsk_interactive_marker_manipulation/origin_marker
+          Name: Marker
+          Namespaces:
+            {}
+          Queue Size: 100
+          Value: true
+      Enabled: false
+      Name: HandLevelControl
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: base_link
+    Fixed Frame: map
     Frame Rate: 30
   Name: root
   Tools:
@@ -1312,31 +1162,31 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 2.36169
+      Distance: 2.47737
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.46065
-        Y: -0.0361451
-        Z: 0.653013
+        X: 0.395287
+        Y: -0.127903
+        Z: 1.34927
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.3098
+      Pitch: 0.859796
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 1.00452
+      Yaw: 6.00296
     Saved: ~
 Window Geometry:
-  Camera:
-    collapsed: false
   CancelAction:
     collapsed: false
   Displays:
     collapsed: false
-  Height: 824
+  Height: 1524
+  Help:
+    collapsed: false
   Hide Left Dock: false
   Hide Right Dock: true
   Image:
@@ -1345,8 +1195,10 @@ Window Geometry:
     collapsed: false
   PublishTopic:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000400000000000001d000000295fc0200000016fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006400fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c0061007900730100000042000001df000000de00fffffffb0000000c00430061006d006500720061020000000f000002700000012e00000114fb0000001800430061006e00630065006c0041006300740069006f006e00000001260000012c0000006600fffffffb0000000c00540065006c0065006f007000000001df0000004a0000004a00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000001a005000750062006c0069007300680054006f007000690063007301000001b8000000790000000000000000fb0000000a0054006f00700069006302000000000000021b000001bd0000007efb0000000a0054006f007000690063000000012f000000690000000000000000fb0000001a00430061006e00630065006c0041006300740069006f006e007500000001d30000012f0000000000000000fb00000018005000750062006c0069007300680054006f0070006900630000000230000000660000006600fffffffb0000001800430061006e00630065006c0041006300740069006f006e0100000214000000ee0000000000000000fb0000000a0049006d00610067006500000002420000008b0000001600fffffffb0000000a0049006d0061006700650000000214000000b90000001600fffffffb0000000a0049006d0061006700650200000127000001950000017500000134fb00000018005000750062006c0069007300680054006f0070006900630100000227000000660000006600fffffffb00000018005200650063006f007200640041006300740069006f006e0100000293000000440000004400ffffff000000010000010f00000295fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000004200000295000000b200fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b20000000000000000000000020000064000000196fc0100000002fb0000002e004f0062006a006500630074004600690074004f00700065007200610074006f00720041006300740069006f006e02000004ad00000198000001580000019efb0000000a00560069006500770073030000004e00000080000002e100000197000000030000063f0000003cfc0100000002fb0000000800540069006d006501000000000000063f000002b500fffffffb0000000800540069006d00650100000000000004500000000000000000000004690000029500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000004000000000000025000000553fc020000001afb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006400fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c0061007900730100000041000001d5000000dd00fffffffb00000018005000750062006c0069007300680054006f007000690063010000021c000000820000006400fffffffb0000000c00430061006d006500720061020000000f000002700000012e00000114fb0000001800430061006e00630065006c0041006300740069006f006e00000001260000012c0000006400fffffffb0000000c00540065006c0065006f007000000001df0000004a0000007600fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000001a005000750062006c0069007300680054006f007000690063007301000001b8000000790000000000000000fb0000000a0054006f00700069006302000000000000021b000001bd0000007efb0000000a0054006f007000690063000000012f000000690000000000000000fb0000001a00430061006e00630065006c0041006300740069006f006e007500000001d30000012f0000000000000000fb00000018005000750062006c0069007300680054006f0070006900630000000230000000660000006400fffffffb0000001800430061006e00630065006c0041006300740069006f006e0100000214000000ee0000000000000000fb0000000a0049006d00610067006500000002420000008b0000001600fffffffb0000000a0049006d0061006700650000000214000000b90000000000000000fb0000000a0049006d0061006700650200000127000001950000017500000134fb00000018005000750062006c0069007300680054006f00700069006301000002a4000000810000006400fffffffb00000018005200650063006f007200640041006300740069006f006e010000032b000000570000004300fffffffb0000003a00530065006c0065006300740050006f0069006e00740043006c006f00750064005000750062006c0069007300680041006300740069006f006e000000041f000000430000004300fffffffb0000000800480065006c00700000000252000000760000007600fffffffb0000002e004f0062006a006500630074004600690074004f00700065007200610074006f00720041006300740069006f006e01000003880000020c0000019400ffffff000000010000010f00000295fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000004200000295000000b000fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b20000000000000000000000020000064000000196fc0100000002fb0000002e004f0062006a006500630074004600690074004f00700065007200610074006f00720041006300740069006f006e02000004ad00000198000001580000019efb0000000a00560069006500770073030000004e00000080000002e1000001970000000300000a000000003cfc0100000002fb0000000800540069006d0065010000000000000a00000002f600fffffffb0000000800540069006d00650100000000000004500000000000000000000007aa0000055300000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   RecordAction:
+    collapsed: false
+  SelectPointCloudPublishAction:
     collapsed: false
   Selection:
     collapsed: false
@@ -1358,6 +1210,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: true
-  Width: 1599
-  X: -7
-  Y: 26
+  Width: 2560
+  X: -8
+  Y: 24
