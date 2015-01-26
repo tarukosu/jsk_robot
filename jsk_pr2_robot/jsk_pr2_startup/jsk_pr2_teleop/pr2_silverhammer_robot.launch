@@ -81,7 +81,16 @@
         topic_prefix: "/"
       </rosparam>
     </node>
-
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_receiver.py"
+          output="screen"
+          name="fc_make_model_receiver">
+      <rosparam>
+        message: jsk_pr2_startup/OCS2FCMakeModel
+        receive_port: 1032
+        receive_ip: "0.0.0.0"
+        topic_prefix: "/"
+      </rosparam>
+    </node>
 
   </group>
 
