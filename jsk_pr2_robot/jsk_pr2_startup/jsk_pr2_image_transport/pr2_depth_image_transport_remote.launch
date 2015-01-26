@@ -51,6 +51,7 @@
       use_service: false
       topics: ["/openni_remote/depth_registered/enlarged_image", "/openni_remote/depth_registered/camera_info", "/openni_remote/rgb/enlarged_image", "/openni_remote/rgb/camera_info"]
       fixed_rate: 0.1
+      publish_once: true
     </rosparam>
   </node>
 
