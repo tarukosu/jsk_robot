@@ -1,1 +1,1 @@
-sensor_msgs/PointCloud2 candidate_points__output
+jsk_pcl_ros/SlicedPointCloud voxel_grid_manager__output_encoded

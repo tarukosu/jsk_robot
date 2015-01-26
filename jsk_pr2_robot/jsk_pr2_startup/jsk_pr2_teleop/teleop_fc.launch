@@ -23,6 +23,8 @@
   <group if="$(arg launch_image_resized)">
     <include file="$(find jsk_pr2_startup)/jsk_pr2_image_transport/pr2_image_transport.launch"/>
     <include file="$(find jsk_pr2_startup)/jsk_pr2_image_transport/pr2_depth_image_transport_robot.launch"/>
+    <include file="$(find jsk_pcl_ros)/launch/pcl_roi_fc.launch"/>
+    <!-- <include file="$(find jsk_interactive_marker)/launch/bounding_box_cropper_server.launch"/> -->
   </group>
 
   <!-- for image roi -->
