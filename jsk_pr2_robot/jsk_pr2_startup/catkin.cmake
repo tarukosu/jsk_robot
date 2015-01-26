@@ -17,7 +17,7 @@ OCS2FCRecordCommand.msg
 generate_messages(DEPENDENCIES std_msgs sensor_msgs jsk_network_tools jsk_interactive_marker jsk_rviz_plugins)
 
 catkin_package(
-  CATKIN_DEPENDS std_msgs jsk_interactive_marker message_runtime jsk_rviz_plugins
+  CATKIN_DEPENDS std_msgs jsk_interactive_marker message_runtime
   )
 
 
