@@ -31,6 +31,29 @@ def joy_cb(msg):
         print pub_msg
         pub.publish(pub_msg)
 
+    #Start Button
+    if msg.buttons[6] == 1:
+        pub_msg.data = 6
+        # print pub_msg
+        pub.publish(pub_msg)
+        # rospy.set_param('pause_motion_recover', "recover")
+        print "pause_motion_recover is set to RECOVER"
+    #Stop Button
+    if msg.buttons[14] == 1:
+        pub_msg.data = 7
+        # print pub_msg
+        pub.publish(pub_msg)
+        # rospy.set_param('/attention_observation/flag', True)
+        # pub_msg.data = 7
+        print "Stop is sent"
+
+    #Cancel Button
+    if msg.buttons[15] == 1:
+        pub_msg.data = 8
+        # print pub_msg
+        pub.publish(pub_msg)
+        print "Cancel is sent"
+
 
 
 rospy.init_node('select_image')
