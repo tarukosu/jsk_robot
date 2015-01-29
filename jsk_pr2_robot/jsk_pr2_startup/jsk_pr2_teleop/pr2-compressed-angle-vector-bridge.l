@@ -15,7 +15,7 @@
                                                             (send jt :max-angle))
                                              (if (infinite-joint-p jt)
                                                  (round (* (/
-                                                            (mod (+ (send jt :joint-angle) 3600000) 360)
+                                                            (mod (+ (send jt :joint-angle)  3600000) 360)
 							    360.0)
                                                            255))
                                                (round (* (/ (- (send jt :joint-angle)
