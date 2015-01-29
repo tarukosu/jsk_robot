@@ -57,8 +57,8 @@
 
   <!-- openni rgb image -->
   <node pkg="image_transport" type="republish" name="republish_head_image_resizer"
-	args="compressed" output="screen">
-    <remap from="in" to="/head_resized/image_rect" />
+	args="raw" output="screen">
+    <remap from="in" to="/head_image" />
     <remap from="out" to="/$(arg camera_remote)/rgb/resized_image" />
   </node>
 

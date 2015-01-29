@@ -103,6 +103,18 @@
       </rosparam>
     </node>
 
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_streamer.py"
+          output="screen"
+          name="fc_robot_status_streamer">
+      <rosparam subst_value="True">
+        message: jsk_pr2_startup/FC2OCSRobotStatus
+        to_port: 1034
+        to_ip: $(arg TO_IP)
+        throttle: False
+      </rosparam>
+    </node>
+
+
 
   </group>
 
