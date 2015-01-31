@@ -16,6 +16,7 @@ OCS2FCGetDepthRegisteredResized.msg
 OCS2FCMakeModel.msg
 OCS2FCRecordCommand.msg
 LookImage.msg
+OCS2FCLookImage.msg
 )
 generate_messages(DEPENDENCIES std_msgs sensor_msgs jsk_network_tools jsk_interactive_marker jsk_rviz_plugins)
 
