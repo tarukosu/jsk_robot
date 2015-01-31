@@ -28,8 +28,12 @@
    color
    ))
 
+
 (defun publish-status
-  (msg)
+  (msg &optional (correct t))
+  (when correct
+    (setq old-msg msg)
+    )
   (let ((text_msg (instance jsk_rviz_plugins::OverlayText :init))
 	text)
     (setq text_size 20)
@@ -76,7 +80,23 @@
     (ros::publish "/robot_status_text" text_msg)
     ))
 
+(defun check-network
+  (msg)
+  (cond 
+   ((> (send msg :data) 0.5)
+    (publish-status (instance std_msgs::UInt8 :init :data 3) nil)
+    (print "delay")
+    )
+   (t
+    (publish-status old-msg)
+    )
+   )
+  )
+
+(setq old-msg (instance std_msgs::UInt8 :init :data 0))
+
 (ros::subscribe "/robot_status"  std_msgs::UInt8 #'publish-status)
+(ros::subscribe "/heartbeat/round_time"  std_msgs::Float32 #'check-network)
 (ros::advertise "/robot_status_text"  jsk_rviz_plugins::OverlayText)
 
 

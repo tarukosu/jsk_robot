@@ -129,5 +129,16 @@
       </rosparam>
    </node>
 
+    <node pkg="jsk_network_tools" type="silverhammer_highspeed_receiver.py"
+          output="screen"
+          name="fc_silverhammer_look_image">
+      <rosparam>
+        message: jsk_pr2_startup/OCS2FCLookImage
+        receive_port: 1111
+        receive_ip: "0.0.0.0"
+        topic_prefix: "/"
+      </rosparam>
+   </node>
+
   </group>
 </launch>
