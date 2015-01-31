@@ -107,7 +107,7 @@
 
     <node pkg="jsk_network_tools" type="silverhammer_highspeed_receiver.py"
           output="screen"
-          name="ocs_heartbeat_receiver">
+          name="ocs_robot_status_receiver">
       <rosparam>
         message: jsk_pr2_startup/FC2OCSRobotStatus
         receive_port: 1034
