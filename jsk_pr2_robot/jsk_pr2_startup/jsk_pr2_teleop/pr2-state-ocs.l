@@ -35,8 +35,13 @@
 (defun publish-state
   (msg)
   ;;(setq compressed-msg (init jsk_pr2_startup::AngleVectorCompressed :init :angles (send msg :joint_angles)))
-  (setq current-angle-vector (decompress-angle-vector *pr2* msg))
-  (send *pr2* :angle-vector current-angle-vector)
+  ;;(setq current-angle-vector (decompress-angle-vector *pr2* msg))
+  (setq data nil)
+  (dotimes (i (length (send *pr2* :angle-vector)))
+    (push (elt (send msg :data) i) data))
+  (send *pr2* :angle-vector data)
+
+  ;;(send *pr2* :angle-vector current-angle-vector)
   ;;(setq js-msg (joint-list->joint_state (send *pr2* :joint-list)))
 
   (setq pos nil)
@@ -85,7 +90,7 @@
   (x::window-main-one)
   )
 
-(ros::subscribe "/angle_vector_compressed" jsk_pr2_startup::AngleVectorCompressed
+(ros::subscribe "/angle_vector_compressed" std_msgs::Float32MultiArray
 		#'publish-state)
 
 (ros::subscribe "/l_gripper_angle_vector_compressed" std_msgs::UInt8

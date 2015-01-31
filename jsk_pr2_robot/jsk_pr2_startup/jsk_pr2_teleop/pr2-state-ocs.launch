@@ -1,5 +1,7 @@
 <launch>
-  <param name="robot_description" command="$(find xacro)/xacro.py '$(find pr2_description)/robots/pr2.urdf.xacro'" />
+  <!-- <param name="robot_description" command="$(find xacro)/xacro.py '$(find pr2_description)/robots/pr2.urdf.xacro'" /> -->
+  <param name="robot_description" textfile="/home/jskuser/robot.xml" />
+
 
   <node pkg="roseus" name="pr2_state_ocs" type="roseus"
 	args="$(find jsk_pr2_startup)/jsk_pr2_teleop/pr2-state-ocs.l"
