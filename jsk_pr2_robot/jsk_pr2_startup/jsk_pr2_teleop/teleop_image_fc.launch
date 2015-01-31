@@ -1,0 +1,6 @@
+<launch>
+  <include file="$(find jsk_pr2_startup)/jsk_pr2_image_transport/pr2_image_transport.launch"/>
+  <include file="$(find jsk_pr2_startup)/jsk_pr2_image_transport/pr2_depth_image_transport_robot.launch"/>
+  <include file="$(find jsk_pcl_ros)/launch/pcl_roi_fc.launch"/>
+
+</launch>

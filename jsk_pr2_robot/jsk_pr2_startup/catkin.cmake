@@ -8,6 +8,7 @@ FC2OCSHeadLogPolarResizedImage.msg FC2OCSLarmLogPolarResizedImage.msg FC2OCSRarm
 FC2OCSDepthRegisteredResized.msg
 FC2OCSCroppedPoints.msg
 FC2OCSRobotStatus.msg
+FC2OCSRoundTime.msg
 OCS2FCRequestPose.msg
 OCS2FCJointStateRiMove.msg
 OCS2FCSelectLogPolar.msg
